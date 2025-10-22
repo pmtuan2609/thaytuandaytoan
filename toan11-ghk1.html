@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề ôn giữa HK1 Toán 11 | Thầy Tuấn Dạy Toán</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Thầy Tuấn Dạy Toán</div>
+    <nav>
+      <a href="index.html">Trang Chủ</a>
+      <a href="index.html#thongbao">Thông Báo</a>
+
+      <!-- Góc Học Tập -->
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Góc Học Tập ▾</a>
+        <div class="dropdown-content">
+          <div class="submenu">
+            <a href="#">Toán 10 ▸</a>
+            <div class="submenu-content">
+              <a href="toan10-lythuyet.html">Lý thuyết</a>
+              <a href="toan10-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan10-hk1.html">Đề ôn HK1</a>
+            </div>
+          </div>
+          <div class="submenu">
+            <a href="#">Toán 11 ▸</a>
+            <div class="submenu-content">
+              <a href="toan11-lythuyet.html">Lý thuyết</a>
+              <a href="toan11-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan11-hk1.html">Đề ôn HK1</a>
+            </div>
+          </div>
+          <div class="submenu">
+            <a href="#">Toán 12 ▸</a>
+            <div class="submenu-content">
+              <a href="toan12-lythuyet.html">Lý thuyết</a>
+              <a href="toan12-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan12-hk1.html">Đề ôn HK1</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html#contact">Liên Hệ</a>
+    </nav>
+  </header>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="content">
+    <h1>Đề Ôn Giữa Học Kỳ 1 - Toán 11</h1>
+    <p class="intro">Dưới đây là các đề ôn tập giữa kỳ I môn Toán 11.  
+      Các em có thể chọn xem trực tiếp hoặc tải về để luyện tập.</p>
+
+    <div class="lesson-list">
+      <div class="lesson-item">
+        <h3>Đề ôn tập số 1</h3>
+        <p>Ôn tập kiểm tra giữa HK1 năm học 2025 - 2026.</p>
+        <div class="btn-group">
+          <a href="deon11-ghk1-1.html" class="btn btn-blue">👀 Xem trực tiếp</a>
+          <a href="https://drive.google.com/file/d/1AbCdEfGh/view" target="_blank" class="btn btn-green">⬇️ Tải về</a>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <h3>Đề ôn tập số 2</h3>
+        <p>Ôn tập kiểm tra giữa HK1 năm học 2025 - 2026.</p>
+        <div class="btn-group">
+          <a href="deon11-ghk1-2.html" class="btn btn-blue">👀 Xem trực tiếp</a>
+          <a href="https://drive.google.com/file/d/1XyZabcDEFG/view" target="_blank" class="btn btn-green">⬇️ Tải về</a>
+        </div>
+      </div>
+
+      <div class="lesson-item">
+        <h3>Đề ôn tập số 3</h3>
+        <p>Ôn tập kiểm tra giữa HK1 năm học 2025 - 2026.</p>
+        <div class="btn-group">
+          <a href="deon11-ghk1-3.html" class="btn btn-blue">👀 Xem trực tiếp</a>
+          <a href="https://drive.google.com/file/d/1PQRSxyz123/view" target="_blank" class="btn btn-green">⬇️ Tải về</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2>Liên Hệ Với Thầy</h2>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="icon">📧</span>
+        <a href="mailto:pmtuan2609@gmail.com">pmtuan2609@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="icon">📞</span>
+        <a href="tel:0979410414">0979410414</a>
+      </div>
+    </div>
+    <p class="copyright">
+      © 2025 Website Thầy Tuấn Dạy Toán<br>
+      © Thầy Phạm Minh Tuấn – Trung tâm GDNN - GDTX Quận 12
+    </p>
+  </footer>
+
+  <!-- SCRIPT DROPDOWN -->
+  <script>
+    document.querySelectorAll(".dropbtn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.preventDefault();
+        const dropdown = btn.parentElement;
+        dropdown.classList.toggle("open");
+        document.querySelectorAll(".dropdown").forEach(other => {
+          if (other !== dropdown) other.classList.remove("open");
+        });
+      });
+    });
+
+    window.addEventListener("click", e => {
+      if (!e.target.matches('.dropbtn') && !e.target.closest('.submenu')) {
+        document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+      }
+    });
+  </script>
+
+</body>
+</html>
