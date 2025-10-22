@@ -3,32 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thầy Tuấn dạy Toán</title>
+  <title>Thầy Tuấn Dạy Toán</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Thanh điều hướng -->
   <header>
-    <div class="logo">Thầy Tuấn dạy Toán</div>
+    <div class="logo">Thầy Tuấn Dạy Toán</div>
     <nav>
       <a href="#">Trang Chủ</a>
       <a href="#">Thông Báo</a>
-      <a href="#">Góc Học Tập</a>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Góc Học Tập ▾</a>
+        <div class="dropdown-content">
+          <a href="#">Toán 10</a>
+          <a href="#">Toán 11</a>
+          <a href="#">Toán 12</a>
+        </div>
+      </div>
       <a href="#">Liên Hệ</a>
     </nav>
   </header>
 
+  <!-- Phần chào mừng -->
   <section class="hero">
     <div id="particles"></div>
     <div class="hero-content">
       <h1>Chào mừng các em học sinh!</h1>
-      <p>Nơi chia sẻ tài liệu, thông báo và kiến thức Toán học.</p>
+      <p>Nơi chia sẻ tài liệu, thông báo và kiến thức Toán học THPT.</p>
       <em>"Không có con đường tắt nào cả"</em>
       <br><br>
-      <a href="#" class="btn">Truy cập Kho Học Liệu</a>
+      <!-- 🔗 Liên kết Google Drive -->
+      <a href="https://drive.google.com/drive/folders/1QM2RYCPvhOy7v_DNjUnUL81eAIcQtVoP?usp=sharing"
+         class="btn"
+         target="_blank"
+         rel="noopener noreferrer">
+         📘 Truy cập Kho Học Liệu
+      </a>
     </div>
   </section>
 
+  <!-- Hiệu ứng nền -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="assets/background.js"></script>
+  <script>
+    particlesJS('particles', {
+      particles: {
+        number: { value: 80 },
+        size: { value: 3 },
+        move: { speed: 2 },
+        line_linked: { enable: true, opacity: 0.4 },
+        color: { value: '#ffffff' },
+      },
+      interactivity: {
+        events: { onhover: { enable: true, mode: 'repulse' } },
+      },
+    });
+  </script>
 </body>
 </html>
