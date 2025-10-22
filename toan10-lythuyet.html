@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lý thuyết Toán 10 | Thầy Tuấn Dạy Toán</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
+
+  <!-- MathJax để hiển thị công thức LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Thầy Tuấn Dạy Toán</div>
+    <nav>
+      <a href="index.html">Trang Chủ</a>
+      <a href="index.html#thongbao">Thông Báo</a>
+
+      <!-- Góc Học Tập -->
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Góc Học Tập ▾</a>
+        <div class="dropdown-content">
+          <div class="submenu">
+            <a href="#">Toán 10 ▸</a>
+            <div class="submenu-content">
+              <a href="toan10-lythuyet.html">Lý thuyết</a>
+              <a href="toan10-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan10-hk1.html">Đề ôn HK1</a>
+              <a href="toan10-ghk2.html">Đề ôn GHK2</a>
+              <a href="toan10-hk2.html">Đề ôn HK2</a>
+            </div>
+          </div>
+
+          <div class="submenu">
+            <a href="#">Toán 11 ▸</a>
+            <div class="submenu-content">
+              <a href="toan11-lythuyet.html">Lý thuyết</a>
+              <a href="toan11-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan11-hk1.html">Đề ôn HK1</a>
+              <a href="toan11-ghk2.html">Đề ôn GHK2</a>
+              <a href="toan11-hk2.html">Đề ôn HK2</a>
+            </div>
+          </div>
+
+          <div class="submenu">
+            <a href="#">Toán 12 ▸</a>
+            <div class="submenu-content">
+              <a href="toan12-lythuyet.html">Lý thuyết</a>
+              <a href="toan12-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan12-hk1.html">Đề ôn HK1</a>
+              <a href="toan12-ghk2.html">Đề ôn GHK2</a>
+              <a href="toan12-hk2.html">Đề ôn HK2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html#contact">Liên Hệ</a>
+    </nav>
+  </header>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="content">
+    <h1>Lý Thuyết Toán 10</h1>
+    <h2>Bài 1. Hàm số bậc nhất</h2>
+
+    <div class="box">
+      <p><strong>Định nghĩa:</strong> Hàm số bậc nhất là hàm số có dạng:</p>
+      <p class="math">\( y = ax + b \), trong đó \( a, b \in \mathbb{R} \) và \( a \neq 0. \)</p>
+
+      <p><strong>Tập xác định:</strong> \( \mathbb{R} \).</p>
+
+      <p><strong>Đồ thị:</strong> là một đường thẳng cắt trục tung tại điểm \( (0; b) \) và có hệ số góc \( a \).</p>
+
+      <div class="example">
+        <p><strong>Ví dụ:</strong> Vẽ đồ thị hàm số \( y = 2x - 3 \).</p>
+        <p><em>Lời giải:</em> Đồ thị đi qua 2 điểm:</p>
+        <ul>
+          <li>Với \( x = 0 \Rightarrow y = -3 \) ⇒ điểm \( A(0; -3) \).</li>
+          <li>Với \( x = 1 \Rightarrow y = -1 \) ⇒ điểm \( B(1; -1) \).</li>
+        </ul>
+        <p>Đường thẳng \( y = 2x - 3 \) đi qua hai điểm \( A, B \) chính là đồ thị của hàm số.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Ghi nhớ:</strong> Hệ số \( a \) xác định độ nghiêng của đường thẳng.  
+      <ul>
+        <li>Nếu \( a > 0 \): hàm số <strong>đồng biến</strong>.</li>
+        <li>Nếu \( a < 0 \): hàm số <strong>nghịch biến</strong>.</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2>Liên Hệ Với Thầy</h2>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="icon">📧</span>
+        <a href="mailto:pmtuan2609@gmail.com">pmtuan2609@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="icon">📞</span>
+        <a href="tel:0979410414">0979410414</a>
+      </div>
+    </div>
+    <p class="copyright">
+      © 2025 Website Thầy Tuấn Dạy Toán<br>
+      © Thầy Phạm Minh Tuấn – Trung tâm GDNN - GDTX Quận 12
+    </p>
+  </footer>
+
+  <!-- SCRIPT CHUNG -->
+  <script>
+    // Dropdown click mở
+    document.querySelectorAll(".dropbtn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.preventDefault();
+        const dropdown = btn.parentElement;
+        dropdown.classList.toggle("open");
+        document.querySelectorAll(".dropdown").forEach(other => {
+          if (other !== dropdown) other.classList.remove("open");
+        });
+      });
+    });
+
+    // Đóng khi click ra ngoài
+    window.addEventListener("click", e => {
+      if (!e.target.matches('.dropbtn') && !e.target.closest('.submenu')) {
+        document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+      }
+    });
+  </script>
+</body>
+</html>
