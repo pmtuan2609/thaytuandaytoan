@@ -144,14 +144,14 @@
       });
     });
 
-    // Click-to-open dropdown
+    // Dropdown click-to-open
     document.querySelectorAll(".dropbtn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         const dropdown = btn.parentElement;
         dropdown.classList.toggle("open");
 
-        // Đóng dropdown khác
+        // Đóng các dropdown khác
         document.querySelectorAll(".dropdown").forEach(other => {
           if (other !== dropdown) other.classList.remove("open");
         });
