@@ -372,3 +372,60 @@ footer .copyright {
 
   .submenu-content { padding-left: 15px; }
 }
+/* ----- TRANG NỘI DUNG BÀI HỌC ----- */
+.content {
+  max-width: 900px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.content h1 {
+  font-size: 34px;
+  color: #124ad8;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content h2 {
+  font-size: 26px;
+  color: #222;
+  margin: 25px 0 15px;
+  border-bottom: 3px solid #ffd7a0;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.box {
+  background: #f9f9ff;
+  border-left: 6px solid #2979ff;
+  padding: 20px 25px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.math {
+  font-size: 20px;
+  color: #222;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.example {
+  background: #fff8e1;
+  border-left: 6px solid #ffb300;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.note {
+  background: #e8f5e9;
+  border-left: 6px solid #00c853;
+  padding: 20px 25px;
+  border-radius: 8px;
+}
