@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiển thị Đề Thi Toán từ File TEX</title>
-    
+    <title>Toán 11 - Đề ôn GHK1 | Thầy Tuấn Dạy Toán</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
+
     <script>
         window.MathJax = {
             tex: {
@@ -15,14 +17,13 @@
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
-
+    
     <style>
         .latex-container {
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
-            min-height: 100px; /* Để tránh màn hình trống khi đang tải */
-            text-align: center;
+            min-height: 100px; /* Hiển thị thông báo tải */
         }
         .exercise {
             counter-increment: ex_counter;
@@ -39,7 +40,10 @@
             color: #007bff;
             margin-bottom: 10px;
         }
-        /* ... (Thêm các style khác nếu cần) ... */
+        .choice-option, .choice-tf-option {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
         .loigiai {
             margin-top: 10px;
             padding: 5px;
@@ -51,48 +55,93 @@
             font-weight: bold;
             color: green;
         }
+        .processed-output h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">Thầy Tuấn Dạy Toán</div>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Góc Học Tập ▾</a>
+                <div class="dropdown-content">
+                    <div class="submenu">
+                        <a href="#">Toán 11 ▸</a>
+                        <div class="submenu-content">
+                            <a href="toan11-ghk1.html" class="active-link">Đề ôn GHK1</a> 
+                            </div>
+                    </div>
+                    </div>
+            </div>
+            <a href="index.html#thongbao">Thông Báo</a>
+            <a href="index.html#contact">Liên Hệ</a>
+        </nav>
+    </header>
 
-    <main class="content">
-        <h1>Đề Số 1 – Giữa Học Kỳ I – Toán 11 (Tải từ file TEX)</h1>
-
+    <main style="padding: 40px 20px; max-width: 900px; margin: auto; min-height: 80vh;">
+        <h1>Đề Ôn Giữa Học Kỳ I - Toán 11</h1>
+        <p>Nội dung đề thi được tải từ file **`deon11-ghk1-1.tex`**.</p>
+        
         <div class="latex-container" id="latex-output">
-            Đang tải nội dung đề thi...
+            Đang tải nội dung đề thi từ file TEX...
         </div>
     </main>
 
+    <footer id="contact" style="margin-top: 50px;">
+        <h2>Liên Hệ Với Thầy</h2>
+        <p>Nếu có bất kỳ thắc mắc nào, các em có thể liên hệ với thầy qua các kênh dưới đây.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="icon">📧</span>
+                <a href="mailto:pmtuan2609@gmail.com">pmtuan2609@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <a href="tel:0979410414">0979410414</a>
+            </div>
+        </div>
+        <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
+        <p class="copyright">
+            © 2025 Website Thầy Tuấn Dạy Toán<br>
+            © Thầy Phạm Minh Tuấn – Trung tâm GDNN - GDTX Quận 12
+        </p>
+    </footer>
+
     <script>
-        const LATEX_FILE_PATH = 'latex/deon11-ghk1-1.tex'; // Đảm bảo đường dẫn này đúng
+        // ĐƯỜNG DẪN TỚI FILE TEX CỦA ĐỀ 11
+        const LATEX_FILE_PATH = 'latex/deon11-ghk1-1.tex'; 
 
         async function fetchAndProcessLatex() {
             const outputContainer = document.getElementById('latex-output');
-            outputContainer.innerHTML = 'Đang tải file TEX...';
-            
+            if (!outputContainer) return;
+
             try {
                 // Bước 1: Fetch nội dung từ file TEX
                 const response = await fetch(LATEX_FILE_PATH);
                 if (!response.ok) {
-                    throw new Error(`Không thể tải file: ${response.status} ${response.statusText}`);
+                    throw new Error(`Không thể tải file: ${response.status} ${response.statusText}.`);
                 }
                 let latexContent = await response.text();
 
-                outputContainer.innerHTML = ''; // Xóa thông báo tải
+                outputContainer.innerHTML = ''; 
                 const processedOutput = document.createElement('div');
                 processedOutput.className = 'processed-output';
                 outputContainer.appendChild(processedOutput);
 
-                // Bước 2: Xử lý LaTeX thành HTML (Logic từ ví dụ trước)
                 let processedHTML = '';
                 let currentEx = 0;
                 
-                // Chuẩn hóa và làm sạch nội dung
-                latexContent = latexContent.replace(/\\setcounter\{ex\}\{0\}\}\n/g, '');
+                // Chuẩn hóa và làm sạch nội dung (như đã giải thích trước đó)
+                latexContent = latexContent.replace(/\\setcounter\{ex\}\{0\}\}\n/g, ''); 
                 latexContent = latexContent.replace(/\\heva\{/g, '\\begin{array}{l}');
-                latexContent = latexContent.replace(/\\hoac\{/g, '\\left\\{\\begin{array}{l}');
-                latexContent = latexContent.replace(/\\}/g, '}').replace(/\\end\{array/g, '\\end{array').replace(/\\end\{ex\}/g, '\n\\end{ex}');
                 
+                // Tách các PHẦN (I, II, III)
                 let parts = latexContent.split(/\\textbf\{PHẦN [I|II|III]\. (.*?)\}/g);
                 
                 for (let i = 1; i < parts.length; i += 2) {
@@ -103,17 +152,24 @@
                     const exercises = partContent.split(/\\begin\{ex\}/).filter(e => e.trim().length > 0);
 
                     exercises.forEach(exBlock => {
+                        currentEx++;
+
                         let exParts = exBlock.split(/\\loigiai\{/);
                         let content = exParts[0].replace(/\\end\{ex\}/g, '').trim();
-                        let solution = exParts.length > 1 ? exParts[1].replace(/\\}/, '').replace(/\\end\{ex\}/, '').trim() : '';
+                        let solution = exParts.length > 1 ? exParts[1].replace(/\\}/, '').replace(/\\end\{ex\}/g, '').trim() : '';
+                        
+                        // Xử lý heva
+                        content = content.replace(/\\begin\{array\}\{l\}([\s\S]*?)(\.)/g, '\\left\\{\\begin{array}{l}$1\\end{array}\\right.');
                         
                         let question = content;
                         let choicesHTML = '';
                         
+                        // Xử lý Trắc nghiệm \choice và \choiceTF
                         if (content.includes('\\choice') || content.includes('\\choiceTF')) {
                             const choiceCommand = content.includes('\\choice') ? '\\choice' : '\\choiceTF';
                             let choiceParts = content.split(new RegExp(`\\${choiceCommand}`));
                             question = choiceParts[0].trim();
+                            
                             let rawChoices = choiceParts[1].match(/(\{[^}]*\})/g) || [];
                             
                             let choiceLetter = 'A';
@@ -122,6 +178,9 @@
                                 let isTrue = choice.includes('\\True');
                                 let cleanChoice = choice.replace(/\{/, '').replace(/\}/, '').replace(/\\True/, '').trim();
                                 let displayClass = isTrue ? 'correct-answer' : '';
+                                
+                                // Xử lý \hoac
+                                cleanChoice = cleanChoice.replace(/\\hoac\{/g, '\\left\\{\\begin{array}{l}').replace(/\\}/g, '\\end{array}\\right.');
                                 
                                 if (choiceCommand === '\\choice') {
                                     choicesHTML += `<div class="choice-option ${displayClass}">(${choiceLetter++}) $${cleanChoice}$</div>`;
@@ -132,8 +191,7 @@
                             });
                             choicesHTML += '</div>';
                         }
-
-                        currentEx++;
+                        
                         let exerciseHTML = `
                             <div class="exercise">
                                 <div class="exercise-header"></div>
@@ -142,8 +200,11 @@
                         `;
                         
                         if (solution) {
+                            // Xử lý môi trường hiển thị toán trong lời giải
+                            solution = solution.replace(/\\\[/g, '$$').replace(/\\\]/g, '$$');
                             exerciseHTML += `<div class="loigiai">Lời giải: ${solution}</div>`;
                         }
+
                         exerciseHTML += `</div>`;
                         processedHTML += exerciseHTML;
                     });
@@ -164,6 +225,5 @@
 
         document.addEventListener("DOMContentLoaded", fetchAndProcessLatex);
     </script>
-
 </body>
 </html>
