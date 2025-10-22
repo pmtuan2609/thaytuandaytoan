@@ -6,15 +6,6 @@
   <title>Lý thuyết Toán 10 | Thầy Tuấn Dạy Toán</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
-
-  <!-- MathJax để hiển thị công thức LaTeX -->
-  <script>
-    window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-      svg: { fontCache: 'global' }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 </head>
 <body>
 
@@ -68,36 +59,29 @@
     </nav>
   </header>
 
-  <!-- NỘI DUNG CHÍNH -->
+  <!-- DANH SÁCH BÀI HỌC -->
   <main class="content">
     <h1>Lý Thuyết Toán 10</h1>
-    <h2>Bài 1. Hàm số bậc nhất</h2>
+    <p class="intro">Dưới đây là danh sách các bài học lý thuyết. Nhấn vào <strong>“Xem tài liệu”</strong> để mở file trên Google Drive.</p>
 
-    <div class="box">
-      <p><strong>Định nghĩa:</strong> Hàm số bậc nhất là hàm số có dạng:</p>
-      <p class="math">\( y = ax + b \), trong đó \( a, b \in \mathbb{R} \) và \( a \neq 0. \)</p>
-
-      <p><strong>Tập xác định:</strong> \( \mathbb{R} \).</p>
-
-      <p><strong>Đồ thị:</strong> là một đường thẳng cắt trục tung tại điểm \( (0; b) \) và có hệ số góc \( a \).</p>
-
-      <div class="example">
-        <p><strong>Ví dụ:</strong> Vẽ đồ thị hàm số \( y = 2x - 3 \).</p>
-        <p><em>Lời giải:</em> Đồ thị đi qua 2 điểm:</p>
-        <ul>
-          <li>Với \( x = 0 \Rightarrow y = -3 \) ⇒ điểm \( A(0; -3) \).</li>
-          <li>Với \( x = 1 \Rightarrow y = -1 \) ⇒ điểm \( B(1; -1) \).</li>
-        </ul>
-        <p>Đường thẳng \( y = 2x - 3 \) đi qua hai điểm \( A, B \) chính là đồ thị của hàm số.</p>
+    <div class="lesson-list">
+      <div class="lesson-item">
+        <h3>Bài 1. Hàm số bậc nhất</h3>
+        <p>Ôn tập kiến thức cơ bản về hàm số bậc nhất, đồ thị, tính đồng biến – nghịch biến.</p>
+        <a href="https://drive.google.com/file/d/1abc123XYZ/view" target="_blank" class="btn btn-blue">📘 Xem tài liệu</a>
       </div>
-    </div>
 
-    <div class="note">
-      <strong>Ghi nhớ:</strong> Hệ số \( a \) xác định độ nghiêng của đường thẳng.  
-      <ul>
-        <li>Nếu \( a > 0 \): hàm số <strong>đồng biến</strong>.</li>
-        <li>Nếu \( a < 0 \): hàm số <strong>nghịch biến</strong>.</li>
-      </ul>
+      <div class="lesson-item">
+        <h3>Bài 2. Hàm số bậc hai</h3>
+        <p>Kiến thức về đồ thị parabol, tọa độ đỉnh, trục đối xứng và định lý Vi-ét.</p>
+        <a href="https://drive.google.com/file/d/1def456UVW/view" target="_blank" class="btn btn-blue">📘 Xem tài liệu</a>
+      </div>
+
+      <div class="lesson-item">
+        <h3>Bài 3. Giá trị tuyệt đối và bất phương trình</h3>
+        <p>Các quy tắc giải phương trình chứa dấu giá trị tuyệt đối và bất phương trình cơ bản.</p>
+        <a href="https://drive.google.com/file/d/1ghi789RST/view" target="_blank" class="btn btn-blue">📘 Xem tài liệu</a>
+      </div>
     </div>
   </main>
 
@@ -120,7 +104,7 @@
     </p>
   </footer>
 
-  <!-- SCRIPT CHUNG -->
+  <!-- SCRIPT DROPDOWN -->
   <script>
     // Dropdown click mở
     document.querySelectorAll(".dropbtn").forEach(btn => {
@@ -141,5 +125,6 @@
       }
     });
   </script>
+
 </body>
 </html>
