@@ -14,6 +14,49 @@
     <nav>
       <a href="#">Trang Chủ</a>
       <a href="#thongbao">Thông Báo</a>
+
+      <!-- Góc Học Tập -->
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Góc Học Tập ▾</a>
+        <div class="dropdown-content">
+          <!-- Toán 10 -->
+          <div class="submenu">
+            <a href="#">Toán 10 ▸</a>
+            <div class="submenu-content">
+              <a href="toan10-lythuyet.html">Lý thuyết</a>
+              <a href="toan10-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan10-hk1.html">Đề ôn HK1</a>
+              <a href="toan10-ghk2.html">Đề ôn GHK2</a>
+              <a href="toan10-hk2.html">Đề ôn HK2</a>
+            </div>
+          </div>
+
+          <!-- Toán 11 -->
+          <div class="submenu">
+            <a href="#">Toán 11 ▸</a>
+            <div class="submenu-content">
+              <a href="toan11-lythuyet.html">Lý thuyết</a>
+              <a href="toan11-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan11-hk1.html">Đề ôn HK1</a>
+              <a href="toan11-ghk2.html">Đề ôn GHK2</a>
+              <a href="toan11-hk2.html">Đề ôn HK2</a>
+            </div>
+          </div>
+
+          <!-- Toán 12 -->
+          <div class="submenu">
+            <a href="#">Toán 12 ▸</a>
+            <div class="submenu-content">
+              <a href="toan12-lythuyet.html">Lý thuyết</a>
+              <a href="toan12-ghk1.html">Đề ôn GHK1</a>
+              <a href="toan12-hk1.html">Đề ôn HK1</a>
+              <a href="toan12-ghk2.html">Đề ôn GHK2</a>
+              <a href="toan12-hk2.html">Đề ôn HK2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <a href="#contact">Liên Hệ</a>
     </nav>
   </header>
@@ -65,17 +108,17 @@
     </p>
   </footer>
 
-  <!-- HIỆU ỨNG NỀN -->
+  <!-- HIỆU ỨNG NỀN & SCRIPT -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script>
-    // Hiệu ứng hạt bay
+    // Hiệu ứng hạt nền
     particlesJS('particles', {
       particles: { number: { value: 80 }, size: { value: 3 }, move: { speed: 2 },
         line_linked: { enable: true, opacity: 0.4 }, color: { value: '#ffffff' } },
       interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } }
     });
 
-    // Cuộn mượt khi nhấn menu
+    // Cuộn mượt
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -84,8 +127,6 @@
           const target = document.querySelector(href);
           if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
-
-            // Nếu là phần thông báo -> hiệu ứng nháy tiêu đề
             if (href === "#thongbao") {
               const title = document.getElementById('thongbao-title');
               title.classList.add('highlight');
@@ -96,7 +137,7 @@
       });
     });
 
-    // Hiển thị thông báo từ thongbao.json
+    // Hiển thị thông báo từ JSON
     fetch("thongbao.json")
       .then(res => res.json())
       .then(data => {
