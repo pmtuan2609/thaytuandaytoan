@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiển thị Đề Thi Toán</title>
+    <title>Hiển thị Đề Thi Toán từ File TEX</title>
     
     <script>
         window.MathJax = {
@@ -21,22 +21,25 @@
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
+            min-height: 100px; /* Để tránh màn hình trống khi đang tải */
+            text-align: center;
         }
         .exercise {
+            counter-increment: ex_counter;
             margin-bottom: 25px;
             padding: 10px;
             border-left: 3px solid #007bff;
             background-color: #f8f9fa;
+        }
+        .exercise-header:before {
+            content: "Bài " counter(ex_counter) ". ";
         }
         .exercise-header {
             font-weight: bold;
             color: #007bff;
             margin-bottom: 10px;
         }
-        .choice-option, .choice-tf-option {
-            margin-left: 20px;
-            margin-bottom: 5px;
-        }
+        /* ... (Thêm các style khác nếu cần) ... */
         .loigiai {
             margin-top: 10px;
             padding: 5px;
@@ -53,151 +56,113 @@
 <body>
 
     <main class="content">
-        <h1>Đề Số 1 – Giữa Học Kỳ I – Toán 11 (Mô phỏng)</h1>
+        <h1>Đề Số 1 – Giữa Học Kỳ I – Toán 11 (Tải từ file TEX)</h1>
 
-        <div class="latex-container" id="latex-input">
-            \textbf{PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn}\setcounter{ex}{0}
-\begin{ex}
-    Nghiệm của phương trình $\sin x = 1$ là
-    \choice
-    {$x = k\pi \ (k \in \mathbb{Z})$}
-    {$x = \dfrac{\pi}{2} + k\pi \ (k \in \mathbb{Z})$}
-    {\True $x = \dfrac{\pi}{2} + k2\pi \ (k \in \mathbb{Z})$}
-    {$x = -\dfrac{\pi}{2} + k2\pi \ (k \in \mathbb{Z})$}
-    \loigiai{Vì $\sin x = 1 \Rightarrow x = \dfrac{\pi}{2} + k2\pi, \ k \in \mathbb{Z}$. Đáp án đúng là C}
-\end{ex}
-
-\begin{ex}
-    Góc có số đo $110^\circ$ đổi ra đơn vị radian là
-    \choice
-    {$110\pi$}
-    {$\dfrac{110\pi}{3}$}
-    {\True $\dfrac{11\pi}{18}$}
-    {$\dfrac{\pi}{8}$}
-    \loigiai{$110^\circ = 110 \times \dfrac{\pi}{180} = \dfrac{11\pi}{18}$. Đáp án C}
-\end{ex}
-\begin{ex}
-	Công thức nghiệm của phương trình $\cos x = \cos \alpha$ là (với $k \in \mathbb{Z}$):
-	
-	\choice
-	{$\hoac{&x = \alpha + k2\pi \\ &x = \pi - \alpha + k2\pi}$}
-    {\True $\hoac{&x = \alpha + k2\pi \\ &x = -\alpha + k2\pi}$}
-	{$\hoac{&x = \alpha^\circ + k360^\circ \\ &x = 180^\circ - \alpha + k360^\circ}$}
-	{$\hoac{&x = \alpha^\circ + k360^\circ \\ &x = -\alpha + k360^\circ}$}
-\end{ex}
-
-\textbf{PHẦN II. Câu trắc nghiệm đúng sai}
-\begin{ex}
-	Cho phương trình lượng giác $2\sin x - 1 = 0 \, (*)$.
-	
-	\choiceTF
-	{\True Phương trình $(*)$ tương đương $\sin x = \dfrac{1}{2}$}
-	{Phương trình $(*)$ tương đương $\sin x = \sin\left(\dfrac{\pi}{3}\right)$}
-	{\True Phương trình có nghiệm là $x = \dfrac{\pi}{6} + k2\pi$ hoặc $x = \dfrac{5\pi}{6} + k2\pi, \ (k \in \mathbb{Z})$}
-	{Trong đoạn $[0;4\pi]$ phương trình có $8$ nghiệm}
-\end{ex}
-
-\textbf{PHẦN III. Câu trắc nghiệm trả lời ngắn}
-\begin{ex}
-	Cho $\sin x = \dfrac{1}{3}$. Giá trị của $\cos2x = \dfrac{m}{n}$ với $\dfrac{m}{n}$ là phân số tối giản.
-	Tính giá trị biểu thức $P=8m-4n$
-\end{ex}
+        <div class="latex-container" id="latex-output">
+            Đang tải nội dung đề thi...
         </div>
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const inputContainer = document.getElementById('latex-input');
-            const latexContent = inputContainer.innerHTML.trim();
-            const outputContainer = document.createElement('div');
-            outputContainer.className = 'processed-output';
-            inputContainer.replaceWith(outputContainer); // Thay thế vùng input bằng vùng output
+        const LATEX_FILE_PATH = 'latex/deon11-ghk1-1.tex'; // Đảm bảo đường dẫn này đúng
 
-            let processedHTML = '';
-            let currentEx = 0;
-            let parts = latexContent.split(/\\textbf\{PHẦN [I|II|III]\. (.*?)\}/g);
+        async function fetchAndProcessLatex() {
+            const outputContainer = document.getElementById('latex-output');
+            outputContainer.innerHTML = 'Đang tải file TEX...';
             
-            // Xử lý từng phần (PHẦN I, PHẦN II, PHẦN III)
-            for (let i = 1; i < parts.length; i += 2) {
-                const partTitle = parts[i];
-                const partContent = parts[i + 1] || '';
+            try {
+                // Bước 1: Fetch nội dung từ file TEX
+                const response = await fetch(LATEX_FILE_PATH);
+                if (!response.ok) {
+                    throw new Error(`Không thể tải file: ${response.status} ${response.statusText}`);
+                }
+                let latexContent = await response.text();
+
+                outputContainer.innerHTML = ''; // Xóa thông báo tải
+                const processedOutput = document.createElement('div');
+                processedOutput.className = 'processed-output';
+                outputContainer.appendChild(processedOutput);
+
+                // Bước 2: Xử lý LaTeX thành HTML (Logic từ ví dụ trước)
+                let processedHTML = '';
+                let currentEx = 0;
                 
-                processedHTML += `<h2>${partTitle}</h2>`;
+                // Chuẩn hóa và làm sạch nội dung
+                latexContent = latexContent.replace(/\\setcounter\{ex\}\{0\}\}\n/g, '');
+                latexContent = latexContent.replace(/\\heva\{/g, '\\begin{array}{l}');
+                latexContent = latexContent.replace(/\\hoac\{/g, '\\left\\{\\begin{array}{l}');
+                latexContent = latexContent.replace(/\\}/g, '}').replace(/\\end\{array/g, '\\end{array').replace(/\\end\{ex\}/g, '\n\\end{ex}');
                 
-                // Tách nội dung thành từng bài tập (\begin{ex} ... \end{ex})
-                const exercises = partContent.split(/\\begin\{ex\}/).filter(e => e.trim().length > 0);
-
-                exercises.forEach(exBlock => {
-                    currentEx++;
+                let parts = latexContent.split(/\\textbf\{PHẦN [I|II|III]\. (.*?)\}/g);
+                
+                for (let i = 1; i < parts.length; i += 2) {
+                    const partTitle = parts[i];
+                    const partContent = parts[i + 1] || '';
+                    processedHTML += `<h2>${partTitle}</h2>`;
                     
-                    // 1. Tách nội dung bài tập khỏi lời giải
-                    let exParts = exBlock.split(/\\loigiai\{/);
-                    let content = exParts[0].replace(/\\end\{ex\}/, '').trim();
-                    let solution = exParts.length > 1 ? exParts[1].replace(/\\}/, '').replace(/\\end\{ex\}/, '').trim() : '';
+                    const exercises = partContent.split(/\\begin\{ex\}/).filter(e => e.trim().length > 0);
 
-                    // 2. Tách câu hỏi khỏi các lựa chọn
-                    let question = content;
-                    let choicesHTML = '';
-                    
-                    // Xử lý trắc nghiệm nhiều phương án (\choice)
-                    if (content.includes('\\choice')) {
-                        let choiceParts = content.split(/\\choice/);
-                        question = choiceParts[0].trim();
-                        let rawChoices = choiceParts[1].split(/(\{[^}]*\})/g).filter(c => c.trim().startsWith('{'));
+                    exercises.forEach(exBlock => {
+                        let exParts = exBlock.split(/\\loigiai\{/);
+                        let content = exParts[0].replace(/\\end\{ex\}/g, '').trim();
+                        let solution = exParts.length > 1 ? exParts[1].replace(/\\}/, '').replace(/\\end\{ex\}/, '').trim() : '';
                         
-                        let choiceLetter = 'A';
-                        choicesHTML += '<div>';
-                        rawChoices.forEach(choice => {
-                            let isTrue = choice.includes('\\True');
-                            let cleanChoice = choice.replace(/\{/, '').replace(/\}/, '').replace(/\\True/, '').trim();
-                            let displayClass = isTrue ? 'correct-answer' : '';
-                            choicesHTML += `<div class="choice-option ${displayClass}">(${choiceLetter++}) $${cleanChoice}$</div>`;
-                        });
-                        choicesHTML += '</div>';
-
-                    // Xử lý trắc nghiệm đúng/sai (\choiceTF)
-                    } else if (content.includes('\\choiceTF')) {
-                        let choiceParts = content.split(/\\choiceTF/);
-                        question = choiceParts[0].trim();
-                        let rawChoices = choiceParts[1].split(/(\{[^}]*\})/g).filter(c => c.trim().length > 0);
+                        let question = content;
+                        let choicesHTML = '';
                         
-                        choicesHTML += '<div>';
-                        rawChoices.forEach(choice => {
-                            let isTrue = choice.includes('\\True');
-                            let cleanChoice = choice.replace(/\{/, '').replace(/\}/, '').replace(/\\True/, '').trim();
-                            let displayClass = isTrue ? 'correct-answer' : '';
-                            let trueFalse = isTrue ? 'Đúng' : 'Sai';
-                            choicesHTML += `<div class="choice-tf-option ${displayClass}">$${cleanChoice}$ (${trueFalse})</div>`;
-                        });
-                        choicesHTML += '</div>';
-                    }
-                    // Các loại khác (trả lời ngắn, tự luận) sẽ không có \choice
+                        if (content.includes('\\choice') || content.includes('\\choiceTF')) {
+                            const choiceCommand = content.includes('\\choice') ? '\\choice' : '\\choiceTF';
+                            let choiceParts = content.split(new RegExp(`\\${choiceCommand}`));
+                            question = choiceParts[0].trim();
+                            let rawChoices = choiceParts[1].match(/(\{[^}]*\})/g) || [];
+                            
+                            let choiceLetter = 'A';
+                            choicesHTML += '<div>';
+                            rawChoices.forEach(choice => {
+                                let isTrue = choice.includes('\\True');
+                                let cleanChoice = choice.replace(/\{/, '').replace(/\}/, '').replace(/\\True/, '').trim();
+                                let displayClass = isTrue ? 'correct-answer' : '';
+                                
+                                if (choiceCommand === '\\choice') {
+                                    choicesHTML += `<div class="choice-option ${displayClass}">(${choiceLetter++}) $${cleanChoice}$</div>`;
+                                } else {
+                                    let trueFalse = isTrue ? '(Đúng)' : '(Sai)';
+                                    choicesHTML += `<div class="choice-tf-option ${displayClass}">$${cleanChoice}$ ${trueFalse}</div>`;
+                                }
+                            });
+                            choicesHTML += '</div>';
+                        }
 
-                    // 3. Xây dựng HTML cho bài tập
-                    let exerciseHTML = `
-                        <div class="exercise">
-                            <div class="exercise-header">Bài ${currentEx}.</div>
-                            <div class="question">$${question.trim()}$</div>
-                            ${choicesHTML}
-                    `;
-                    
-                    // Thêm lời giải (nếu có)
-                    if (solution) {
-                        exerciseHTML += `<div class="loigiai">Lời giải: $${solution}$</div>`;
-                    }
+                        currentEx++;
+                        let exerciseHTML = `
+                            <div class="exercise">
+                                <div class="exercise-header"></div>
+                                <div class="question">$${question.trim()}$</div>
+                                ${choicesHTML}
+                        `;
+                        
+                        if (solution) {
+                            exerciseHTML += `<div class="loigiai">Lời giải: ${solution}</div>`;
+                        }
+                        exerciseHTML += `</div>`;
+                        processedHTML += exerciseHTML;
+                    });
+                }
+                
+                processedOutput.innerHTML = processedHTML;
 
-                    exerciseHTML += `</div>`;
-                    processedHTML += exerciseHTML;
-                });
+                // Bước 3: Gọi MathJax để render
+                if (window.MathJax) {
+                    MathJax.typesetPromise([outputContainer]);
+                }
+
+            } catch (error) {
+                console.error("Lỗi khi tải hoặc xử lý file LaTeX:", error);
+                outputContainer.innerHTML = `<p style="color:red;">Lỗi: Không thể tải hoặc xử lý file TEX. Vui lòng kiểm tra đường dẫn (${LATEX_FILE_PATH}) và đảm bảo bạn đang chạy máy chủ web cục bộ.</p>`;
             }
-            
-            outputContainer.innerHTML = processedHTML;
-            
-            // 4. Gọi MathJax để render lại toàn bộ công thức
-            if (window.MathJax) {
-                MathJax.typesetPromise([outputContainer]);
-            }
-        });
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchAndProcessLatex);
     </script>
 
 </body>
