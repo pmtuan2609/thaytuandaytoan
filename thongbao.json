@@ -10,29 +10,4 @@
       {"label": "Ôn tập KTGK HK1 - Lớp 11", "url": "https://drive.google.com/folder1", "color": "blue"},
       {"label": "Ôn tập KTGK HK1 - Lớp 12", "url": "https://drive.google.com/folder2", "color": "green"}
     ]
-  },
-  {
-    "title": "Kiểm Tra Thường Xuyên Lần 2",
-    "date": "15/10/2025",
-    "content": " Để chuẩn bị tốt nhất cho bài kiểm tra, các em hãy truy cập kho học liệu hoặc bấm vào nút dưới để đến liên kết ôn tập.",
-    "badge": "MỚI",
-    "badgeColor": "new",
-    "type": "yellow",
-    "links": [
-      {"label": "Ôn tập KTTX Lần 2 - Lớp 11", "url": "https://drive.google.com/folder3", "color": "blue"},
-      {"label": "Ôn tập KTTX Lần 2 - Lớp 12", "url": "https://drive.google.com/folder4", "color": "green"}
-    ]
-  },
-  {
-    "title": "Kiểm Tra Thường Xuyên Lần 1 ",
-    "date": "01/10/2025",
-    "content": "Để chuẩn bị tốt nhất cho bài kiểm tra, các em hãy nhấn vào nút bên dưới để xem lại nội dung ôn tập chi tiết.",
-    "badge": "",
-    "badgeColor": "",
-    "type": "",
-    "links": [
-      {"label": "Ôn tập KTTX Lần 1 - Lớp 11", "url": "https://drive.google.com/folder5", "color": "blue"},
-      {"label": "Ôn tập KTTX Lần 1 - Lớp 12", "url": "https://drive.google.com/folder6", "color": "green"}
-    ]
   }
-]
