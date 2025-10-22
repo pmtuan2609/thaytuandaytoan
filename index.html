@@ -255,99 +255,124 @@ Cho cấp số cộng $(u_n)$ có $u_1 = 2$ và công sai $d = 3$.
 
 
         /* BẮT ĐẦU: LOGIC XỬ LÝ CÚ PHÁP EX_TEST */
-        function processInlineLatex() {
-            const inputContainer = document.getElementById('latex-input');
-            const outputContainer = document.getElementById('latex-output');
-            
-            if (!inputContainer || !outputContainer) return;
+        /* BẮT ĐẦU: LOGIC XỬ LÝ CÚ PHÁP EX_TEST (ĐÃ TỐI ƯU HÓA) */
 
-            // Lấy nội dung LaTeX từ DOM
-            let latexContent = inputContainer.innerHTML.trim();
-            
-            // Xóa các comment HTML và dấu hiệu kết thúc
-            latexContent = latexContent.replace(//g, '').trim();
+// Đảm bảo đường dẫn này đúng với vị trí file .tex của bạn
+const LATEX_FILE_PATH = 'deon11-ghk1-1.tex'; 
 
-            let processedHTML = '';
+async function fetchAndProcessLatex() {
+    const outputContainer = document.getElementById('latex-output');
+    if (!outputContainer) return;
+
+    try {
+        const response = await fetch(LATEX_FILE_PATH);
+        if (!response.ok) {
+            throw new Error(`Không thể tải file: ${response.status} ${response.statusText}.`);
+        }
+        let latexContent = await response.text();
+        
+        // *****************************************************************
+        // BƯỚC KHẮC PHỤC LỖI HIỂN THỊ: Nhân đôi các dấu \
+        // Điều này đảm bảo Regex và MathJax xử lý đúng các lệnh LaTeX
+        // *****************************************************************
+        latexContent = latexContent.replace(/\\/g, '\\\\');
+        
+        outputContainer.innerHTML = ''; 
+        const processedOutput = document.createElement('div');
+        processedOutput.className = 'processed-output';
+        outputContainer.appendChild(processedOutput);
+
+        let processedHTML = '';
+        
+        // Chuẩn hóa và làm sạch nội dung (Sử dụng 4 dấu backslash trong regex)
+        latexContent = latexContent.replace(/\\\\setcounter\{ex\}\{0\}\}\n/g, ''); 
+        latexContent = latexContent.replace(/\\\\heva\{/g, '\\\\begin\{array\}\{l\}'); 
+        
+        // Tách các PHẦN (I, II, III)
+        let parts = latexContent.split(/\\\\textbf\{PHẦN [I|II|III]\. (.*?)\}/g);
+        
+        for (let i = 1; i < parts.length; i += 2) {
+            const partTitle = parts[i];
+            const partContent = parts[i + 1] || '';
+            processedHTML += `<h2>${partTitle}</h2>`;
             
-            // Chuẩn hóa cú pháp EX_TEST
-            latexContent = latexContent.replace(/\\setcounter\{ex\}\{0\}\}\n/g, ''); 
-            latexContent = latexContent.replace(/\\heva\{/g, '\\begin{array}{l}');
-            
-            // Tách các PHẦN (I, II, III)
-            let parts = latexContent.split(/\\textbf\{PHẦN [I|II|III]\. (.*?)\}/g);
-            
-            for (let i = 1; i < parts.length; i += 2) {
-                const partTitle = parts[i];
-                const partContent = parts[i + 1] || '';
-                processedHTML += `<h2>${partTitle}</h2>`;
+            const exercises = partContent.split(/\\\\begin\{ex\}/).filter(e => e.trim().length > 0);
+
+            exercises.forEach(exBlock => {
+                let exParts = exBlock.split(/\\\\loigiai\{/);
+                let content = exParts[0].replace(/\\\\end\{ex\}/g, '').trim();
                 
-                const exercises = partContent.split(/\\begin\{ex\}/).filter(e => e.trim().length > 0);
-
-                exercises.forEach(exBlock => {
-                    let exParts = exBlock.split(/\\loigiai\{/);
-                    let content = exParts[0].replace(/\\end\{ex\}/g, '').trim();
-                    let solution = exParts.length > 1 ? exParts[1].replace(/\\}/, '').replace(/\\end\{ex\}/g, '').trim() : '';
+                // Lời giải: giữ nguyên và chuyển \[ \] thành $$ $$
+                let solution = exParts.length > 1 ? exParts[1].replace(/\\\\\}/, '').replace(/\\\\end\{ex\}/g, '').trim() : '';
+                solution = solution.replace(/\\\\\[/g, '$$').replace(/\\\\\]/g, '$$');
+                
+                // Xử lý heva trong câu hỏi
+                content = content.replace(/\\\\begin\{array\}\{l\}([\s\S]*?)(\.)/g, '\\\\left\\\\{\\\\begin\{array\}\{l\}$1\\\\end\{array\}\\\\right.');
+                
+                let question = content;
+                let choicesHTML = '';
+                
+                // Xử lý Trắc nghiệm
+                if (content.includes('\\\\choice') || content.includes('\\\\choiceTF')) {
+                    const choiceCommand = content.includes('\\\\choice') ? '\\\\choice' : '\\\\choiceTF';
+                    let choiceParts = content.split(new RegExp(`\\\\${choiceCommand}`));
+                    question = choiceParts[0].trim();
                     
-                    // Xử lý heva
-                    content = content.replace(/\\begin\{array\}\{l\}([\s\S]*?)(\.)/g, '\\left\\{\\begin{array}{l}$1\\end{array}\\right.');
+                    // Regex tìm các lựa chọn nằm trong {...}
+                    let rawChoices = choiceParts[1].match(/(\{([^}]+)\})/g) || [];
                     
-                    let question = content;
-                    let choicesHTML = '';
-                    
-                    // Xử lý Trắc nghiệm \choice và \choiceTF
-                    if (content.includes('\\choice') || content.includes('\\choiceTF')) {
-                        const choiceCommand = content.includes('\\choice') ? '\\choice' : '\\choiceTF';
-                        let choiceParts = content.split(new RegExp(`\\${choiceCommand}`));
-                        question = choiceParts[0].trim();
+                    let choiceLetter = 'A';
+                    choicesHTML += '<div>';
+                    rawChoices.forEach(choice => {
+                        let isTrue = choice.includes('\\\\True');
+                        let cleanChoice = choice.substring(1, choice.length - 1).replace(/\\\\True/, '').trim();
+                        let displayClass = isTrue ? 'correct-answer' : '';
                         
-                        let rawChoices = choiceParts[1].match(/(\{[^}]*\})/g) || [];
+                        // Xử lý \hoac
+                        cleanChoice = cleanChoice.replace(/\\\\hoac\{/g, '\\\\left\\\\{\\\\begin\{array\}\{l\}').replace(/\\\\\}/g, '\\\\end\{array\}\\\\right.');
                         
-                        let choiceLetter = 'A';
-                        choicesHTML += '<div>';
-                        rawChoices.forEach(choice => {
-                            let isTrue = choice.includes('\\True');
-                            let cleanChoice = choice.replace(/\{/, '').replace(/\}/, '').replace(/\\True/, '').trim();
-                            let displayClass = isTrue ? 'correct-answer' : '';
-                            
-                            // Xử lý \hoac
-                            cleanChoice = cleanChoice.replace(/\\hoac\{/g, '\\left\\{\\begin{array}{l}').replace(/\\}/g, '\\end{array}\\right.');
-                            
-                            if (choiceCommand === '\\choice') {
-                                choicesHTML += `<div class="choice-option ${displayClass}">(${choiceLetter++}) $${cleanChoice}$</div>`;
-                            } else {
-                                let trueFalse = isTrue ? '(Đúng)' : '(Sai)';
-                                choicesHTML += `<div class="choice-tf-option ${displayClass}">$${cleanChoice}$ ${trueFalse}</div>`;
-                            }
-                        });
-                        choicesHTML += '</div>';
-                    }
-                    
-                    let exerciseHTML = `
-                        <div class="exercise">
-                            <div class="exercise-header"></div>
-                            <div class="question">$${question.trim()}$</div>
-                            ${choicesHTML}
-                    `;
-                    
-                    if (solution) {
-                        solution = solution.replace(/\\\[/g, '$$').replace(/\\\]/g, '$$');
-                        exerciseHTML += `<div class="loigiai">Lời giải: ${solution}</div>`;
-                    }
+                        if (choiceCommand === '\\\\choice') {
+                            // CÚ PHÁP CHUẨN: Đảm bảo công thức được bao bọc bằng $...$
+                            choicesHTML += `<div class="choice-option ${displayClass}">(${choiceLetter++}) $${cleanChoice}$</div>`;
+                        } else {
+                            // CÚ PHÁP CHUẨN: Đảm bảo công thức được bao bọc bằng $...$
+                            choicesHTML += `<div class="choice-tf-option ${displayClass}">$${cleanChoice}$ ${trueFalse}</div>`;
+                        }
+                    });
+                    choicesHTML += '</div>';
+                }
+                
+                // Xây dựng HTML cho bài tập
+                let exerciseHTML = `
+                    <div class="exercise">
+                        <div class="exercise-header"></div>
+                        <div class="question">$${question.trim()}$</div>
+                        ${choicesHTML}
+                `;
+                
+                if (solution) {
+                    exerciseHTML += `<div class="loigiai">Lời giải: ${solution}</div>`;
+                }
 
-                    exerciseHTML += `</div>`;
-                    processedHTML += exerciseHTML;
-                });
-            }
-            
-            outputContainer.innerHTML = processedHTML;
+                exerciseHTML += `</div>`;
+                processedHTML += exerciseHTML;
+            });
+        }
+        
+        processedOutput.innerHTML = processedHTML;
 
-            // Gọi MathJax để render công thức
-            if (window.MathJax) {
-                MathJax.typesetPromise([outputContainer]);
-            }
+        // Gọi MathJax để render
+        if (window.MathJax) {
+            MathJax.typesetPromise([outputContainer]);
         }
 
-        document.addEventListener("DOMContentLoaded", processInlineLatex);
+    } catch (error) {
+        console.error("Lỗi khi tải hoặc xử lý file LaTeX:", error);
+        outputContainer.innerHTML = `<p style="color:red;">Lỗi: Không thể tải hoặc xử lý file TEX. Vui lòng kiểm tra đường dẫn (${LATEX_FILE_PATH}) và đảm bảo bạn đã commit file lên GitHub.</p>`;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", fetchAndProcessLatex);
         /* KẾT THÚC: LOGIC XỬ LÝ CÚ PHÁP EX_TEST */
     </script>
 </body>
