@@ -108,6 +108,7 @@ header nav a:hover {
   display: block;
 }
 
+/* Hiệu ứng mượt khi xổ menu */
 .dropdown-content, .submenu-content {
   animation: fadeIn 0.2s ease-in-out;
 }
@@ -117,7 +118,7 @@ header nav a:hover {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* ----- Hero Section ----- */
+/* ----- Hero Section (màu pastel hồng - cam) ----- */
 .hero {
   position: relative;
   height: 90vh;
@@ -189,13 +190,14 @@ footer {
   background-color: #1c2738;
   color: #f5f5f5;
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 footer h2 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 footer p {
@@ -203,10 +205,31 @@ footer p {
   margin: 8px 0;
 }
 
+footer .contact-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 25px 0 30px 0;
+}
+
+footer .contact-item {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+footer .contact-item .icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
 footer a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
+  transition: 0.3s;
 }
 
 footer a:hover {
@@ -215,15 +238,17 @@ footer a:hover {
 
 footer em {
   display: block;
-  margin-top: 25px;
+  margin-top: 30px;
   font-style: italic;
   opacity: 0.8;
+  font-size: 18px;
 }
 
 footer .copyright {
   margin-top: 20px;
   font-size: 15px;
   opacity: 0.7;
+  line-height: 1.5;
 }
 
 /* ----- Responsive ----- */
@@ -248,5 +273,14 @@ footer .copyright {
 
   .hero p {
     font-size: 18px;
+  }
+
+  footer h2 {
+    font-size: 26px;
+  }
+
+  footer .contact-info {
+    flex-direction: column;
+    gap: 15px;
   }
 }
