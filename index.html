@@ -54,7 +54,8 @@
         </div>
       </div>
 
-      <a href="#">Liên Hệ</a>
+      <!-- Nút liên hệ (cuộn xuống cuối trang) -->
+      <a href="#contact">Liên Hệ</a>
     </nav>
   </header>
 
@@ -63,10 +64,10 @@
     <div id="particles"></div>
     <div class="hero-content">
       <h1>Chào mừng các em học sinh!</h1>
-      <p>Nơi chia sẻ tài liệu, kiến thức Toán học THPT.</p>
-      <em>"Để đi đến thành công, không có còn đường tắt nào cả"</em>
+      <p>Nơi chia sẻ tài liệu, thông báo và kiến thức Toán học THPT.</p>
+      <em>"Cách duy nhất để giỏi toán là tự làm thật nhiều toán!"</em>
       <br><br>
-      <a href="https://drive.google.com/drive/folders/1QM2RYCPvhOy7v_DNjUnUL81eAIcQtVoP"
+      <a href="https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOpQrStUvWxYz"
          class="btn"
          target="_blank"
          rel="noopener noreferrer">
@@ -74,6 +75,24 @@
       </a>
     </div>
   </section>
+
+  <!-- Phần Liên hệ -->
+  <footer id="contact">
+    <h2>Liên Hệ Với Thầy</h2>
+    <p>Nếu có bất kỳ thắc mắc nào, các em có thể liên hệ với thầy bằng các hình thức dưới đây.</p>
+
+    <div class="contact-info">
+      <p>📧 <a href="mailto:pmtuan2609@gmail.com">pmtuan2609@gmail.com</a></p>
+      <p>📞 <a href="tel:0979410414">0979410414</a></p>
+    </div>
+
+    <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
+
+    <p class="copyright">
+      © 2025 Website Thầy Tuấn Dạy Toán <br>
+      © Thầy Phạm Minh Tuấn – Trung Tâm GDNN - GDTX Quận 12
+    </p>
+  </footer>
 
   <!-- Hiệu ứng nền -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
@@ -89,6 +108,16 @@
       interactivity: {
         events: { onhover: { enable: true, mode: 'repulse' } },
       },
+    });
+
+    // Cuộn mượt khi bấm "Liên hệ"
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
     });
   </script>
 </body>
