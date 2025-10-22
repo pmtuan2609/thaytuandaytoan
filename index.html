@@ -1,193 +1,362 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thầy Tuấn Dạy Toán</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
-</head>
-<body>
-  <!-- HEADER -->
-  <header>
-    <div class="logo">Thầy Tuấn Dạy Toán</div>
-    <nav>
-      <a href="#">Trang Chủ</a>
-      
-      <!-- Góc Học Tập -->
-      <div class="dropdown">
-        <a href="#" class="dropbtn">Góc Học Tập ▾</a>
-        <div class="dropdown-content">
-          <!-- Toán 10 -->
-          <div class="submenu">
-            <a href="#">Toán 10 ▸</a>
-            <div class="submenu-content">
-              <a href="toan10-lythuyet.html">Lý thuyết</a>
-              <a href="toan10-ghk1.html">Đề ôn GHK1</a>
-              <a href="toan10-hk1.html">Đề ôn HK1</a>
-              <a href="toan10-ghk2.html">Đề ôn GHK2</a>
-              <a href="toan10-hk2.html">Đề ôn HK2</a>
-            </div>
-          </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thầy Tuấn Dạy Toán</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
 
-          <!-- Toán 11 -->
-          <div class="submenu">
-            <a href="#">Toán 11 ▸</a>
-            <div class="submenu-content">
-              <a href="toan11-lythuyet.html">Lý thuyết</a>
-              <a href="toan11-ghk1.html">Đề ôn GHK1</a>
-              <a href="toan11-hk1.html">Đề ôn HK1</a>
-              <a href="toan11-ghk2.html">Đề ôn GHK2</a>
-              <a href="toan11-hk2.html">Đề ôn HK2</a>
-            </div>
-          </div>
-
-          <!-- Toán 12 -->
-          <div class="submenu">
-            <a href="#">Toán 12 ▸</a>
-            <div class="submenu-content">
-              <a href="toan12-lythuyet.html">Lý thuyết</a>
-              <a href="toan12-ghk1.html">Đề ôn GHK1</a>
-              <a href="toan12-hk1.html">Đề ôn HK1</a>
-              <a href="toan12-ghk2.html">Đề ôn GHK2</a>
-              <a href="toan12-hk2.html">Đề ôn HK2</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a href="#thongbao">Thông Báo</a>
-      <a href="#contact">Liên Hệ</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div id="particles"></div>
-    <div class="hero-content">
-      <h1>Chào mừng các em học sinh!</h1>
-      <p>Nơi chia sẻ tài liệu, kiến thức và thông báo Toán học THPT.</p>
-      <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
-      <br><br>
-      <a href="https://drive.google.com/drive/folders/1QM2RYCPvhOy7v_DNjUnUL81eAIcQtVoP"
-         class="btn" target="_blank" rel="noopener noreferrer">
-         📘 Truy cập Kho Học Liệu
-      </a>
-    </div>
-  </section>
-
-  <!-- THÔNG BÁO -->
-  <section id="thongbao" class="announcements">
-    <h2 id="thongbao-title">📢 Thông Báo Mới Nhất</h2>
-    <div id="announcement-list">
-      <p>Đang tải thông báo...</p>
-    </div>
-  </section>
-
-  <!-- LIÊN HỆ -->
-  <footer id="contact">
-    <h2>Liên Hệ Với Thầy</h2>
-    <p>Nếu có bất kỳ thắc mắc nào, các em có thể liên hệ với thầy qua các kênh dưới đây.</p>
-
-    <div class="contact-info">
-      <div class="contact-item">
-        <span class="icon">📧</span>
-        <a href="mailto:pmtuan2609@gmail.com">pmtuan2609@gmail.com</a>
-      </div>
-      <div class="contact-item">
-        <span class="icon">📞</span>
-        <a href="tel:0979410414">0979410414</a>
-      </div>
-    </div>
-
-    <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
-
-    <p class="copyright">
-      © 2025 Website Thầy Tuấn Dạy Toán<br>
-      © Thầy Phạm Minh Tuấn – Trung tâm GDNN - GDTX Quận 12
-    </p>
-  </footer>
-
-  <!-- HIỆU ỨNG NỀN -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script>
-    // Hiệu ứng nền hạt
-    particlesJS('particles', {
-      particles: {
-        number: { value: 80 },
-        size: { value: 3 },
-        move: { speed: 2 },
-        line_linked: { enable: true, opacity: 0.4 },
-        color: { value: '#ffffff' },
-      },
-      interactivity: {
-        events: { onhover: { enable: true, mode: 'repulse' } },
-      },
-    });
-
-    // Cuộn mượt khi bấm liên kết
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            if (href === "#thongbao") {
-              const title = document.getElementById('thongbao-title');
-              title.classList.add('highlight');
-              setTimeout(() => title.classList.remove('highlight'), 1500);
-            }
-          }
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    
+    <style>
+        .latex-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 100px; /* Hiển thị thông báo tải */
         }
-      });
-    });
+        .exercise {
+            counter-increment: ex_counter;
+            margin-bottom: 25px;
+            padding: 10px;
+            border-left: 3px solid #007bff;
+            background-color: #f8f9fa;
+        }
+        .exercise-header:before {
+            content: "Câu " counter(ex_counter) ". ";
+        }
+        .exercise-header {
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .choice-option, .choice-tf-option {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        .loigiai {
+            margin-top: 10px;
+            padding: 5px;
+            border-top: 1px dashed #adb5bd;
+            font-style: italic;
+            color: #28a745;
+        }
+        .correct-answer {
+            font-weight: bold;
+            color: green;
+        }
+        .processed-output h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #333;
+        }
+    </style>
+    </head>
+<body>
+    <header>
+        <div class="logo">Thầy Tuấn Dạy Toán</div>
+        <nav>
+            <a href="#">Trang Chủ</a>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Góc Học Tập ▾</a>
+                <div class="dropdown-content">
+                    <div class="submenu">
+                        <a href="#">Toán 10 ▸</a>
+                        <div class="submenu-content">
+                            <a href="toan10-lythuyet.html">Lý thuyết</a>
+                            <a href="toan10-ghk1.html">Đề ôn GHK1</a>
+                            <a href="toan10-hk1.html">Đề ôn HK1</a>
+                            <a href="toan10-ghk2.html">Đề ôn GHK2</a>
+                            <a href="toan10-hk2.html">Đề ôn HK2</a>
+                        </div>
+                    </div>
 
-    // Dropdown click-to-open
-    document.querySelectorAll(".dropbtn").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const dropdown = btn.parentElement;
-        dropdown.classList.toggle("open");
+                    <div class="submenu">
+                        <a href="#">Toán 11 ▸</a>
+                        <div class="submenu-content">
+                            <a href="toan11-lythuyet.html">Lý thuyết</a>
+                            <a href="toan11-ghk1.html">Đề ôn GHK1</a>
+                            <a href="toan11-hk1.html">Đề ôn HK1</a>
+                            <a href="toan11-ghk2.html">Đề ôn GHK2</a>
+                            <a href="toan11-hk2.html">Đề ôn HK2</a>
+                        </div>
+                    </div>
 
-        // Đóng các dropdown khác
-        document.querySelectorAll(".dropdown").forEach(other => {
-          if (other !== dropdown) other.classList.remove("open");
+                    <div class="submenu">
+                        <a href="#">Toán 12 ▸</a>
+                        <div class="submenu-content">
+                            <a href="toan12-lythuyet.html">Lý thuyết</a>
+                            <a href="toan12-ghk1.html">Đề ôn GHK1</a>
+                            <a href="toan12-hk1.html">Đề ôn HK1</a>
+                            <a href="toan12-ghk2.html">Đề ôn GHK2</a>
+                            <a href="toan12-hk2.html">Đề ôn HK2</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#thongbao">Thông Báo</a>
+            <a href="#contact">Liên Hệ</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div id="particles"></div>
+        <div class="hero-content">
+            <h1>Chào mừng các em học sinh!</h1>
+            <p>Nơi chia sẻ tài liệu, kiến thức và thông báo Toán học THPT.</p>
+            <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
+            <br><br>
+            <a href="https://drive.google.com/drive/folders/1QM2RYCPvhOy7v_DNjUnUL81eAIcQtVoP"
+                class="btn" target="_blank" rel="noopener noreferrer">
+                📘 Truy cập Kho Học Liệu
+            </a>
+        </div>
+    </section>
+    
+    <section id="de-thi" style="padding: 40px 20px; text-align: left; max-width: 900px; margin: auto;">
+        <h2>📝 Đề Thi Mẫu (Tải từ file TEX)</h2>
+        <p>Phần này minh họa việc tải và hiển thị file LaTeX/Tex. Vui lòng chạy web server cục bộ!</p>
+        <div class="latex-container" id="latex-output">
+            Đang tải nội dung đề thi từ file TEX...
+        </div>
+    </section>
+    <section id="thongbao" class="announcements">
+        <h2 id="thongbao-title">📢 Thông Báo Mới Nhất</h2>
+        <div id="announcement-list">
+            <p>Đang tải thông báo...</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Liên Hệ Với Thầy</h2>
+        <p>Nếu có bất kỳ thắc mắc nào, các em có thể liên hệ với thầy qua các kênh dưới đây.</p>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="icon">📧</span>
+                <a href="mailto:pmtuan2609@gmail.com">pmtuan2609@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <a href="tel:0979410414">0979410414</a>
+            </div>
+        </div>
+
+        <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
+
+        <p class="copyright">
+            © 2025 Website Thầy Tuấn Dạy Toán<br>
+            © Thầy Phạm Minh Tuấn – Trung tâm GDNN - GDTX Quận 12
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        // Hiệu ứng nền hạt
+        particlesJS('particles', {
+            particles: {
+                number: { value: 80 },
+                size: { value: 3 },
+                move: { speed: 2 },
+                line_linked: { enable: true, opacity: 0.4 },
+                color: { value: '#ffffff' },
+            },
+            interactivity: {
+                events: { onhover: { enable: true, mode: 'repulse' } },
+            },
         });
-      });
-    });
 
-    // Đóng dropdown khi click ra ngoài
-    window.addEventListener("click", (e) => {
-      if (!e.target.matches('.dropbtn') && !e.target.closest('.submenu')) {
-        document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
-      }
-    });
-
-    // Hiển thị thông báo từ thongbao.json
-    fetch("thongbao.json")
-      .then(res => res.json())
-      .then(data => {
-        const list = document.getElementById("announcement-list");
-        list.innerHTML = "";
-        data.forEach(item => {
-          const div = document.createElement("div");
-          div.className = `announcement-item ${item.type || ''}`;
-          div.innerHTML = `
-            <h3>${item.title}</h3>
-            <div class="date">Ngày đăng: ${item.date}</div>
-            <p>${item.content}</p>
-            ${item.badge ? `<span class="badge ${item.badgeColor || ''}">${item.badge}</span>` : ""}
-            <div class="link-buttons">
-              ${item.links.map(l=>`<a href="${l.url}" target="_blank" class="btn-${l.color}">${l.label}</a>`).join("")}
-            </div>`;
-          list.appendChild(div);
+        // Cuộn mượt khi bấm liên kết
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        if (href === "#thongbao") {
+                            const title = document.getElementById('thongbao-title');
+                            title.classList.add('highlight');
+                            setTimeout(() => title.classList.remove('highlight'), 1500);
+                        }
+                    }
+                }
+            });
         });
-      })
-      .catch(() => {
-        document.getElementById("announcement-list").innerHTML =
-          "<p>Không có thông báo nào hiện tại.</p>";
-      });
-  </script>
+
+        // Dropdown click-to-open
+        document.querySelectorAll(".dropbtn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                const dropdown = btn.parentElement;
+                dropdown.classList.toggle("open");
+
+                // Đóng các dropdown khác
+                document.querySelectorAll(".dropdown").forEach(other => {
+                    if (other !== dropdown) other.classList.remove("open");
+                });
+            });
+        });
+
+        // Đóng dropdown khi click ra ngoài
+        window.addEventListener("click", (e) => {
+            if (!e.target.matches('.dropbtn') && !e.target.closest('.submenu')) {
+                document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+            }
+        });
+
+        // Hiển thị thông báo từ thongbao.json
+        fetch("thongbao.json")
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById("announcement-list");
+                list.innerHTML = "";
+                data.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = `announcement-item ${item.type || ''}`;
+                    div.innerHTML = `
+                        <h3>${item.title}</h3>
+                        <div class="date">Ngày đăng: ${item.date}</div>
+                        <p>${item.content}</p>
+                        ${item.badge ? `<span class="badge ${item.badgeColor || ''}">${item.badge}</span>` : ""}
+                        <div class="link-buttons">
+                            ${item.links.map(l=>`<a href="${l.url}" target="_blank" class="btn-${l.color}">${l.label}</a>`).join("")}
+                        </div>`;
+                    list.appendChild(div);
+                });
+            })
+            .catch(() => {
+                document.getElementById("announcement-list").innerHTML =
+                    "<p>Không có thông báo nào hiện tại. (Lỗi tải thongbao.json)</p>";
+            });
+
+
+        /* BẮT ĐẦU: LOGIC XỬ LÝ FILE TEX */
+        const LATEX_FILE_PATH = 'latex/deon11-ghk1-1.tex'; // Đảm bảo đường dẫn này đúng
+
+        async function fetchAndProcessLatex() {
+            const outputContainer = document.getElementById('latex-output');
+            if (!outputContainer) return;
+
+            try {
+                // Bước 1: Fetch nội dung từ file TEX
+                const response = await fetch(LATEX_FILE_PATH);
+                if (!response.ok) {
+                    throw new Error(`Không thể tải file: ${response.status} ${response.statusText}.`);
+                }
+                let latexContent = await response.text();
+
+                outputContainer.innerHTML = ''; 
+                const processedOutput = document.createElement('div');
+                processedOutput.className = 'processed-output';
+                outputContainer.appendChild(processedOutput);
+
+                let processedHTML = '';
+                let currentEx = 0;
+                
+                // Chuẩn hóa và làm sạch nội dung
+                latexContent = latexContent.replace(/\\setcounter\{ex\}\{0\}\}\n/g, ''); 
+                latexContent = latexContent.replace(/\\heva\{/g, '\\begin{array}{l}'); // Xử lý heva
+                
+                // Tách các PHẦN (I, II, III)
+                let parts = latexContent.split(/\\textbf\{PHẦN [I|II|III]\. (.*?)\}/g);
+                
+                for (let i = 1; i < parts.length; i += 2) {
+                    const partTitle = parts[i];
+                    const partContent = parts[i + 1] || '';
+                    processedHTML += `<h2>${partTitle}</h2>`;
+                    
+                    const exercises = partContent.split(/\\begin\{ex\}/).filter(e => e.trim().length > 0);
+
+                    exercises.forEach(exBlock => {
+                        currentEx++;
+
+                        let exParts = exBlock.split(/\\loigiai\{/);
+                        let content = exParts[0].replace(/\\end\{ex\}/g, '').trim();
+                        let solution = exParts.length > 1 ? exParts[1].replace(/\\}/, '').replace(/\\end\{ex\}/g, '').trim() : '';
+                        
+                        // Xử lý heva trong câu hỏi (dạng hệ phương trình nhỏ)
+                        content = content.replace(/\\begin\{array\}\{l\}([\s\S]*?)(\.)/g, '\\left\\{\\begin{array}{l}$1\\end{array}\\right.');
+                        
+                        let question = content;
+                        let choicesHTML = '';
+                        
+                        // Xử lý Trắc nghiệm
+                        if (content.includes('\\choice') || content.includes('\\choiceTF')) {
+                            const choiceCommand = content.includes('\\choice') ? '\\choice' : '\\choiceTF';
+                            let choiceParts = content.split(new RegExp(`\\${choiceCommand}`));
+                            question = choiceParts[0].trim();
+                            
+                            // Regex tìm các lựa chọn nằm trong {...}
+                            let rawChoices = choiceParts[1].match(/(\{[^}]*\})/g) || [];
+                            
+                            let choiceLetter = 'A';
+                            choicesHTML += '<div>';
+                            rawChoices.forEach(choice => {
+                                let isTrue = choice.includes('\\True');
+                                let cleanChoice = choice.replace(/\{/, '').replace(/\}/, '').replace(/\\True/, '').trim();
+                                let displayClass = isTrue ? 'correct-answer' : '';
+                                
+                                // Xử lý \hoac (hệ phương trình cho nghiệm)
+                                cleanChoice = cleanChoice.replace(/\\hoac\{/g, '\\left\\{\\begin{array}{l}').replace(/\\}/g, '\\end{array}\\right.');
+                                
+                                if (choiceCommand === '\\choice') {
+                                    choicesHTML += `<div class="choice-option ${displayClass}">(${choiceLetter++}) $${cleanChoice}$</div>`;
+                                } else {
+                                    let trueFalse = isTrue ? '(Đúng)' : '(Sai)';
+                                    choicesHTML += `<div class="choice-tf-option ${displayClass}">$${cleanChoice}$ ${trueFalse}</div>`;
+                                }
+                            });
+                            choicesHTML += '</div>';
+                        }
+                        
+                        // Xây dựng HTML cho bài tập
+                        let exerciseHTML = `
+                            <div class="exercise">
+                                <div class="exercise-header"></div>
+                                <div class="question">$${question.trim()}$</div>
+                                ${choicesHTML}
+                        `;
+                        
+                        if (solution) {
+                            // Xử lý môi trường hiển thị toán trong lời giải
+                            solution = solution.replace(/\\\[/g, '$$').replace(/\\\]/g, '$$');
+                            exerciseHTML += `<div class="loigiai">Lời giải: ${solution}</div>`;
+                        }
+
+                        exerciseHTML += `</div>`;
+                        processedHTML += exerciseHTML;
+                    });
+                }
+                
+                processedOutput.innerHTML = processedHTML;
+
+                // Bước 3: Gọi MathJax để render
+                if (window.MathJax) {
+                    MathJax.typesetPromise([outputContainer]);
+                }
+
+            } catch (error) {
+                console.error("Lỗi khi tải hoặc xử lý file LaTeX:", error);
+                outputContainer.innerHTML = `<p style="color:red;">Lỗi: Không thể tải hoặc xử lý file TEX. Vui lòng kiểm tra đường dẫn (${LATEX_FILE_PATH}) và đảm bảo bạn đang chạy máy chủ web cục bộ.</p>`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchAndProcessLatex);
+        /* KẾT THÚC: LOGIC XỬ LÝ FILE TEX */
+    </script>
 </body>
 </html>
