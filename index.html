@@ -8,59 +8,17 @@
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
 </head>
 <body>
-  <!-- Thanh điều hướng -->
+  <!-- HEADER -->
   <header>
     <div class="logo">Thầy Tuấn Dạy Toán</div>
     <nav>
       <a href="#">Trang Chủ</a>
-      <a href="#">Thông Báo</a>
-
-      <!-- Góc học tập đa cấp -->
-      <div class="dropdown">
-        <a href="#" class="dropbtn">Góc Học Tập ▾</a>
-        <div class="dropdown-content">
-          <!-- Toán 10 -->
-          <div class="submenu">
-            <a href="#">Toán 10 ▸</a>
-            <div class="submenu-content">
-              <a href="toan10/lythuyet.html">Lý thuyết</a>
-              <a href="toan10/ghk1.html">Đề ôn GHK1</a>
-              <a href="toan10/hk1.html">Đề ôn HK1</a>
-              <a href="toan10/ghk2.html">Đề ôn GHK2</a>
-              <a href="toan10/hk2.html">Đề ôn HK2</a>
-            </div>
-          </div>
-          <!-- Toán 11 -->
-          <div class="submenu">
-            <a href="#">Toán 11 ▸</a>
-            <div class="submenu-content">
-              <a href="toan11/lythuyet.html">Lý thuyết</a>
-              <a href="toan11/ghk1.html">Đề ôn GHK1</a>
-              <a href="toan11/hk1.html">Đề ôn HK1</a>
-              <a href="toan11/ghk2.html">Đề ôn GHK2</a>
-              <a href="toan11/hk2.html">Đề ôn HK2</a>
-            </div>
-          </div>
-          <!-- Toán 12 -->
-          <div class="submenu">
-            <a href="#">Toán 12 ▸</a>
-            <div class="submenu-content">
-              <a href="toan12/lythuyet.html">Lý thuyết</a>
-              <a href="toan12/ghk1.html">Đề ôn GHK1</a>
-              <a href="toan12/hk1.html">Đề ôn HK1</a>
-              <a href="toan12/ghk2.html">Đề ôn GHK2</a>
-              <a href="toan12/hk2.html">Đề ôn HK2</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nút liên hệ (cuộn xuống cuối trang) -->
+      <a href="#thongbao">Thông Báo</a>
       <a href="#contact">Liên Hệ</a>
     </nav>
   </header>
 
-  <!-- Phần chào mừng -->
+  <!-- HERO -->
   <section class="hero">
     <div id="particles"></div>
     <div class="hero-content">
@@ -69,23 +27,21 @@
       <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
       <br><br>
       <a href="https://drive.google.com/drive/folders/1QM2RYCPvhOy7v_DNjUnUL81eAIcQtVoP"
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
+         class="btn" target="_blank" rel="noopener noreferrer">
          📘 Truy cập Kho Học Liệu
       </a>
     </div>
   </section>
 
-  <!-- KHU VỰC THÔNG BÁO -->
+  <!-- THÔNG BÁO -->
   <section id="thongbao" class="announcements">
-    <h2>📢 Thông Báo Mới Nhất</h2>
+    <h2 id="thongbao-title">📢 Thông Báo Mới Nhất</h2>
     <div id="announcement-list">
       <p>Đang tải thông báo...</p>
     </div>
   </section>
 
-  <!-- Phần Liên hệ -->
+  <!-- LIÊN HỆ -->
   <footer id="contact">
     <h2>Liên Hệ Với Thầy</h2>
     <p>Nếu có bất kỳ thắc mắc nào, các em có thể liên hệ với thầy qua các kênh dưới đây.</p>
@@ -109,29 +65,34 @@
     </p>
   </footer>
 
-  <!-- Hiệu ứng nền -->
+  <!-- HIỆU ỨNG NỀN -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script>
+    // Hiệu ứng hạt bay
     particlesJS('particles', {
-      particles: {
-        number: { value: 80 },
-        size: { value: 3 },
-        move: { speed: 2 },
-        line_linked: { enable: true, opacity: 0.4 },
-        color: { value: '#ffffff' },
-      },
-      interactivity: {
-        events: { onhover: { enable: true, mode: 'repulse' } },
-      },
+      particles: { number: { value: 80 }, size: { value: 3 }, move: { speed: 2 },
+        line_linked: { enable: true, opacity: 0.4 }, color: { value: '#ffffff' } },
+      interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } }
     });
 
-    // Cuộn mượt khi bấm "Liên hệ"
+    // Cuộn mượt khi nhấn menu
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+
+            // Nếu là phần thông báo -> hiệu ứng nháy tiêu đề
+            if (href === "#thongbao") {
+              const title = document.getElementById('thongbao-title');
+              title.classList.add('highlight');
+              setTimeout(() => title.classList.remove('highlight'), 1500);
+            }
+          }
+        }
       });
     });
 
@@ -143,27 +104,19 @@
         list.innerHTML = "";
         data.forEach(item => {
           const div = document.createElement("div");
-          div.className = "announcement-item";
+          div.className = `announcement-item ${item.type || ''}`;
           div.innerHTML = `
             <h3>${item.title}</h3>
             <div class="date">Ngày đăng: ${item.date}</div>
             <p>${item.content}</p>
-            ${item.tags.map(tag => `<span class="badge">${tag}</span>`).join("")}
+            ${item.badge ? `<span class="badge ${item.badgeColor || ''}">${item.badge}</span>` : ""}
             <div class="link-buttons">
-              ${item.links.map(link => `
-                <a href="${link.url}" target="_blank" class="btn-${link.color}">
-                  ${link.label}
-                </a>`).join("")}
-            </div>
-          `;
+              ${item.links.map(l=>`<a href="${l.url}" target="_blank" class="btn-${l.color}">${l.label}</a>`).join("")}
+            </div>`;
           list.appendChild(div);
         });
       })
-      .catch(err => {
-        console.error(err);
-        document.getElementById("announcement-list").innerHTML =
-          "<p>Không có thông báo nào hiện tại.</p>";
-      });
+      .catch(() => document.getElementById("announcement-list").innerHTML = "<p>Không có thông báo nào hiện tại.</p>");
   </script>
 </body>
 </html>
