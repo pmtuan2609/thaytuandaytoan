@@ -69,7 +69,7 @@
       <p>Nơi chia sẻ tài liệu, kiến thức và thông báo Toán học THPT.</p>
       <em>"Để đi đến thành công, không có con đường tắt nào cả!"</em>
       <br><br>
-      <a href="https://drive.google.com/drive/folders/1QM2RYCPvhOy7v_DNjUnUL81eAIcQtVoP"
+      <a href="https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOpQrStUvWxYz"
          class="btn" target="_blank" rel="noopener noreferrer">
          📘 Truy cập Kho Học Liệu
       </a>
@@ -108,17 +108,24 @@
     </p>
   </footer>
 
-  <!-- HIỆU ỨNG NỀN & SCRIPT -->
+  <!-- HIỆU ỨNG NỀN -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script>
-    // Hiệu ứng hạt nền
+    // Hiệu ứng nền hạt
     particlesJS('particles', {
-      particles: { number: { value: 80 }, size: { value: 3 }, move: { speed: 2 },
-        line_linked: { enable: true, opacity: 0.4 }, color: { value: '#ffffff' } },
-      interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } }
+      particles: {
+        number: { value: 80 },
+        size: { value: 3 },
+        move: { speed: 2 },
+        line_linked: { enable: true, opacity: 0.4 },
+        color: { value: '#ffffff' },
+      },
+      interactivity: {
+        events: { onhover: { enable: true, mode: 'repulse' } },
+      },
     });
 
-    // Cuộn mượt
+    // Cuộn mượt khi bấm liên kết
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -137,7 +144,28 @@
       });
     });
 
-    // Hiển thị thông báo từ JSON
+    // Click-to-open dropdown
+    document.querySelectorAll(".dropbtn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const dropdown = btn.parentElement;
+        dropdown.classList.toggle("open");
+
+        // Đóng dropdown khác
+        document.querySelectorAll(".dropdown").forEach(other => {
+          if (other !== dropdown) other.classList.remove("open");
+        });
+      });
+    });
+
+    // Đóng dropdown khi click ra ngoài
+    window.addEventListener("click", (e) => {
+      if (!e.target.matches('.dropbtn') && !e.target.closest('.submenu')) {
+        document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+      }
+    });
+
+    // Hiển thị thông báo từ thongbao.json
     fetch("thongbao.json")
       .then(res => res.json())
       .then(data => {
@@ -157,7 +185,10 @@
           list.appendChild(div);
         });
       })
-      .catch(() => document.getElementById("announcement-list").innerHTML = "<p>Không có thông báo nào hiện tại.</p>");
+      .catch(() => {
+        document.getElementById("announcement-list").innerHTML =
+          "<p>Không có thông báo nào hiện tại.</p>";
+      });
   </script>
 </body>
 </html>
