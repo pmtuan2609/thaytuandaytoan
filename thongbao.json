@@ -1,0 +1,13 @@
+[
+  {
+    "title": "Kiểm Tra GIỮA HỌC KÌ 1",
+    "date": "15/10/2025",
+    "content": "Lịch kiểm tra Giữa Học Kì 1. Đây là bài kiểm tra quan trọng, các em cần tập trung ôn luyện. Truy cập kho học liệu hoặc bấm vào nút dưới đây để đến thư mục ôn tập.",
+    "tags": ["QUAN TRỌNG"],
+    "links": [
+      {"label": "Ôn tập KTGK HK1 - Lớp 11", "url": "https://drive.google.com/folder1", "color": "blue"},
+      {"label": "Ôn tập KTGK HK1 - Lớp 12", "url": "https://drive.google.com/folder2", "color": "green"}
+    ]
+  },
+   
+]
